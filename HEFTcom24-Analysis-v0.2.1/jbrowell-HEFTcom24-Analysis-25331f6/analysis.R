@@ -1,4 +1,6 @@
 ## Set-up ######################################################################
+install.packages("xtable")
+install.packages("latex2exp")
 require(dplyr)
 require(data.table)
 require(ggplot2)
