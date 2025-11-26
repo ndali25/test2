@@ -1,14 +1,13 @@
 ## Set-up ######################################################################
-packages <- c("dplyr", "data.table", "ggplot2", "ggridges", "xtable", "latex2exp", "patchwork")
 
-install_if_missing <- function(pkg) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg, repos = "https://cloud.r-project.org")
-  }
-}
-
-invisible(sapply(packages, install_if_missing))
 install.packages("rstudioapi")
+install.packages("dplyr")
+install.packages("data.table")
+install.packages("ggplot2")
+install.packages("ggpridges")
+install.packages("xtable)
+install.packages("latex2exp")
+install.packages("patchwork")
 
 # Then load them:
 lapply(packages, library, character.only = TRUE)
