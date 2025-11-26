@@ -1,19 +1,32 @@
-## Set-up ######################################################################
-# docker: base_image=rocker/rstudio:latest
-cat("
-This project requires running RStudio Server in Docker.
-Please use the following base image:
-    rocker/rstudio:latest
-RStudio will be available at http://localhost:8787.
-")
-install.packages("rstudioapi")
+# Install required packages
 install.packages("dplyr")
 install.packages("data.table")
 install.packages("ggplot2")
-install.packages("ggpridges")
+install.packages("ggridges")
 install.packages("xtable")
 install.packages("latex2exp")
 install.packages("patchwork")
+install.packages("RColorBrewer")
+
+# Load libraries
+library(dplyr)
+library(data.table)
+library(ggplot2)
+library(ggridges)
+library(xtable)
+library(latex2exp)
+library(patchwork)
+library(RColorBrewer)
+
+# Only load rstudioapi if running inside RStudio
+if (requireNamespace("rstudioapi", quietly = TRUE) &&
+    rstudioapi::isAvailable()) {
+    library(rstudioapi)
+    message("rstudioapi loaded.")
+} else {
+    message("rstudioapi NOT available — running in headless mode.")
+}
+
 
 # Then load them:
 require(dplyr)
