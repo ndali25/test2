@@ -5,7 +5,7 @@ install.packages("dplyr")
 install.packages("data.table")
 install.packages("ggplot2")
 install.packages("ggpridges")
-install.packages("xtable)
+install.packages("xtable")
 install.packages("latex2exp")
 install.packages("patchwork")
 
