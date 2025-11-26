@@ -1,6 +1,11 @@
 ## Set-up ######################################################################
 # docker: base_image=rocker/rstudio:latest
-
+cat("
+This project requires running RStudio Server in Docker.
+Please use the following base image:
+    rocker/rstudio:latest
+RStudio will be available at http://localhost:8787.
+")
 install.packages("rstudioapi")
 install.packages("dplyr")
 install.packages("data.table")
