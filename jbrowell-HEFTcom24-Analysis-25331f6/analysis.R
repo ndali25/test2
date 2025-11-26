@@ -1,4 +1,6 @@
 ## Set-up ######################################################################
+# docker: base_image=rocker/rstudio:latest
+
 install.packages("rstudioapi")
 install.packages("dplyr")
 install.packages("data.table")
