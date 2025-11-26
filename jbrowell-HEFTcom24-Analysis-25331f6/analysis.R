@@ -1,4 +1,5 @@
 ## Set-up ######################################################################
+rstudio::start()
 
 install.packages("rstudioapi")
 install.packages("dplyr")
