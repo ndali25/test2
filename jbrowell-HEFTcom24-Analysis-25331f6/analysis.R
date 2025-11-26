@@ -8,6 +8,7 @@ install_if_missing <- function(pkg) {
 }
 
 invisible(sapply(packages, install_if_missing))
+install.packages("rstudioapi")
 
 # Then load them:
 lapply(packages, library, character.only = TRUE)
