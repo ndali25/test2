@@ -2,6 +2,10 @@ HEFTcom24-Analysis
 
 Analyse de la compétition Hybrid Renewable Energy Forecasting and Tracing Competition 2024, reproduisant et étendant les résultats présentés dans cet article
 .
+install rstudio in docker: 
+
+BASE_IMAGE=rocker/rstudio:latest
+
 
 1. Récupération des données
 
