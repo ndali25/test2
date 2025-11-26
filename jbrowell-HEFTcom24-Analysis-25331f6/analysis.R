@@ -10,7 +10,6 @@ install.packages("latex2exp")
 install.packages("patchwork")
 
 # Then load them:
-lapply(packages, library, character.only = TRUE)
 require(dplyr)
 require(data.table)
 require(ggplot2)
