@@ -40,6 +40,8 @@ require(patchwork)
 require(rstudioapi)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
+#add working directory
+setwd("/app")
 
 ###Fig format
 fig_format <- "pdf"
