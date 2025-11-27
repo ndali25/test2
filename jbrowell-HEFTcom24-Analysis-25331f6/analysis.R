@@ -1,3 +1,18 @@
+## FIX 1 — Robust working directory for RStudio & Docker ##
+############################################################
+
+suppressWarnings({
+    try({
+        script_path <- rstudioapi::getSourceEditorContext()$path
+        if (!is.null(script_path)) {
+            setwd(dirname(normalizePath(script_path)))
+        }
+    }, silent = TRUE)
+})
+
+cat("Working directory:", getwd(), "\n")
+cat("Data directory:", list.files("data"), "\n\n")
+
 # Install required packages
 install.packages("dplyr")
 install.packages("data.table")
@@ -7,6 +22,14 @@ install.packages("xtable")
 install.packages("latex2exp")
 install.packages("patchwork")
 install.packages("RColorBrewer")
+
+packages <- c("tidyr", "dplyr", "data.table")
+
+installed <- packages %in% installed.packages()
+
+if(any(!installed)) {
+  install.packages(packages[!installed], repos = "https://cloud.r-project.org/")
+}
 
 # Load libraries
 library(dplyr)
@@ -18,14 +41,19 @@ library(latex2exp)
 library(patchwork)
 library(RColorBrewer)
 
-# Only load rstudioapi if running inside RStudio
-if (requireNamespace("rstudioapi", quietly = TRUE) &&
-    rstudioapi::isAvailable()) {
-    library(rstudioapi)
-    message("rstudioapi loaded.")
+rstudio_available <- FALSE
+if (requireNamespace("rstudioapi", quietly = TRUE)) {
+    if (rstudioapi::isAvailable()) {
+        rstudio_available <- TRUE
+        library(rstudioapi)
+        message("rstudioapi loaded — running inside RStudio.")
+    } else {
+        message("rstudioapi installed but RStudio is NOT running — using headless mode.")
+    }
 } else {
-    message("rstudioapi NOT available — running in headless mode.")
+    message("rstudioapi not installed — headless mode.")
 }
+
 
 
 # Then load them:
@@ -37,8 +65,8 @@ require(xtable)
 library(latex2exp)
 require(patchwork)
 
-require(rstudioapi)
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+#require(rstudioapi)
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 #add working directory
 setwd("/app")
@@ -914,5 +942,3 @@ forecast_data[team=="ProbProfit" &
                 dtm != as.POSIXct("2024-05-16 22:00:00",tz="UTC") &
                 quantile != 40,
               mean(pinball)]
-
-
